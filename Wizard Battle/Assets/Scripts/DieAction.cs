@@ -39,6 +39,7 @@ public class DieAction : MonoBehaviour {
     }
     public void die()
     {
+        Invoke("instersticial",1f);
         NotificationCenter.DefaultCenter().PostNotification(this, "stop");
         player.GetComponent<Animator>().SetBool("Die",true);
         if (controller.survivalMode)
@@ -116,6 +117,7 @@ public class DieAction : MonoBehaviour {
     }
     public void gameOver()
     {
+        AdManager.Instance.showBanner();
         controller.score =controller.score + (int)(GameObject.Find("HealthBar").GetComponent<Transform>().localScale.x * 100000);
         if (controller.versusMode)
         {
@@ -156,5 +158,12 @@ public class DieAction : MonoBehaviour {
     {
         GetComponent<Animator>().SetBool("Ending",false);
         gameOver();
+    }
+    public void instersticial()
+    {
+        if (!controller.versusMode)
+        {
+            AdManager.Instance.showIntersticial();
+        }
     }
 }

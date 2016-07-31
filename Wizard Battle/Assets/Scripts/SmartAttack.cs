@@ -18,14 +18,14 @@ public class SmartAttack : MonoBehaviour {
             timeIn = controller.min();
             timeFin = controller.max();
         }
-        Invoke("attack", Random.Range(timeIn + 6, timeFin));
+        Invoke("attack", Random.Range((timeIn + 4), timeFin));
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (controller.isAliveAgain)
         {
-            Invoke("attack", Random.Range(timeIn + 6, timeFin));
+            Invoke("attack", Random.Range((timeIn + 4), timeFin));
             controller.isAliveAgain = false;
         }
 	}

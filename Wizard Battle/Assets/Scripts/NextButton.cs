@@ -19,6 +19,7 @@ public class NextButton : MonoBehaviour {
 	}
     void OnMouseDown()
     {
+        AdManager.Instance.exitBanner();
         controller.noDamage = true;
         GetComponent<AudioSource>().Play();
         if (controller.ending)

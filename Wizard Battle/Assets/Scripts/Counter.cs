@@ -7,7 +7,7 @@ public class Counter : MonoBehaviour {
 	void Start () {
         controller = GameObject.FindObjectOfType<Controller>();
         controller.isAlive = true;
-        Invoke("destroy", 4f);
+        Invoke("destroy", 3.5f);
 	}
 	
 	// Update is called once per frame

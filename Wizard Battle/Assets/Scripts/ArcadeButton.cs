@@ -18,6 +18,7 @@ public class ArcadeButton : MonoBehaviour {
 	}
     void OnMouseDown()
     {
+        AdManager.Instance.exitBanner();
         GetComponent<AudioSource>().Play();
         anim.SetBool("Pressed",true);
         Invoke("pressed",0.5f);

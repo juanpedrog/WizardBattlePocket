@@ -16,6 +16,7 @@ public class SurvivalButton : MonoBehaviour {
 	}
     void OnMouseDown()
     {
+        AdManager.Instance.exitBanner();
         GetComponent<AudioSource>().Play();
         anim.SetBool("Pressed",true);
         controller.survivalMode = true;

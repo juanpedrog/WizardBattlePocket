@@ -14,6 +14,7 @@ public class BackButton : MonoBehaviour {
 	}
     void OnMouseDown()
     {
+        GetComponent<TextMesh>().color = Color.red;
         NotificationCenter.DefaultCenter().PostNotification(this, "soundBack");
         controller.survivalMode = false;
         controller.versusMode = false;

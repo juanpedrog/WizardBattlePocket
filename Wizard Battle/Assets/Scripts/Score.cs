@@ -13,6 +13,7 @@ public class Score : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         NotificationCenter.DefaultCenter().AddObserver(this, "score100");
+        NotificationCenter.DefaultCenter().AddObserver(this, "score10");
         NotificationCenter.DefaultCenter().AddObserver(this,"saveScore");
         GetComponent<TextMesh>().text = score + "";
 	}
@@ -27,5 +28,9 @@ public class Score : MonoBehaviour {
     void saveScore(Notification notification)
     {
         controller.score = score;
+    }
+    void score10(Notification notification)
+    {
+        score += 10;
     }
 }

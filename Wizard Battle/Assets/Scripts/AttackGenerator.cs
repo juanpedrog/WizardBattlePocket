@@ -26,7 +26,7 @@ public class AttackGenerator : MonoBehaviour {
             NotificationCenter.DefaultCenter().PostNotification(this,"activate");
         }
         Instantiate(AttackObject,GetComponent<Transform>().position, Quaternion.identity);
-        controller.score += 10;
+        NotificationCenter.DefaultCenter().PostNotification(this,"score10");
     }
     void resetPower(Notification notification)
     {

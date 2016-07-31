@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour {
 	}
     public void OnMouseDown()
     {
+        AdManager.Instance.exitBanner();
         if (ispaused)
         {
             GetComponent<AudioSource>().Play();

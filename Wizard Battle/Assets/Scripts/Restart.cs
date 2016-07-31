@@ -23,6 +23,7 @@ public class Restart : MonoBehaviour {
 	}
     void OnMouseDown()
     {
+        AdManager.Instance.exitBanner();
         GetComponent<AudioSource>().Play();
         controller.unblockAttack();
         NotificationCenter.DefaultCenter().PostNotification(this,"reset");

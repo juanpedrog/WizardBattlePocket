@@ -27,7 +27,7 @@ public class Controller : MonoBehaviour {
     public bool isAliveAgain = false;
     public bool boss1Block,boss2Block,boss3Block,boss1Image,boss2Image,boss3Image;
     public string datapath;
-    public bool backgroundboss1,sound,music;
+    public bool backgroundboss1,sound,music,principal,jumpenemy=true;
     public bool survivalMode;
     public float healthBar;
     public bool power,versus;
@@ -51,6 +51,7 @@ public class Controller : MonoBehaviour {
     void Awake()
     {
         datapath = Application.persistentDataPath + "/data.dat";
+        principal = true;
         if (controller == null)
         {
             controller = this;

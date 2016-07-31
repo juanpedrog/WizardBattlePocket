@@ -19,15 +19,10 @@ public class Inteligencia : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Attack")
+        if (collider.gameObject.tag == "Attack" && controller.jumpenemy)
         {
             wizard.GetComponent<Rigidbody2D>().velocity = new Vector2(wizard.GetComponent<Rigidbody2D>().velocity.x,vel);
-            if (controller.floor)
-            {
-                controller.floor = false;
-                vel = 0;
-                Invoke("inFloor",0.5f);
-            }
+            controller.jumpenemy = false;
         }
     }
     void inFloor()

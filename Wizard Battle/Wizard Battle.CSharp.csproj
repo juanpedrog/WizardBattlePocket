@@ -68,6 +68,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Wizard Battle.CSharp.Plugins.csproj">
+      <Project>{F1B171F9-A5B9-02AD-2334-37D0E346E9F5}</Project>
+      <Name>Wizard Battle.CSharp.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Scripts\AdManager.cs" />
     <Compile Include="Assets\Scripts\ArcadeButton.cs" />
     <Compile Include="Assets\Scripts\AspectUtility.cs" />
     <Compile Include="Assets\Scripts\Attack.cs" />
@@ -89,10 +96,13 @@
     <Compile Include="Assets\Scripts\EnemyGenerator.cs" />
     <Compile Include="Assets\Scripts\Exhibition.cs" />
     <Compile Include="Assets\Scripts\FirstDifficulty.cs" />
+    <Compile Include="Assets\Scripts\FloorEnemy.cs" />
     <Compile Include="Assets\Scripts\HeadInvoker.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Inteligencia.cs" />
+    <Compile Include="Assets\Scripts\Intro.cs" />
     <Compile Include="Assets\Scripts\Invoker.cs" />
+    <Compile Include="Assets\Scripts\InvokerMenu.cs" />
     <Compile Include="Assets\Scripts\Jump.cs" />
     <Compile Include="Assets\Scripts\JumpButtonActive.cs" />
     <Compile Include="Assets\Scripts\KOButton.cs" />
@@ -106,6 +116,7 @@
     <Compile Include="Assets\Scripts\Power.cs" />
     <Compile Include="Assets\Scripts\PowerAttack.cs" />
     <Compile Include="Assets\Scripts\PowerEnemy.cs" />
+    <Compile Include="Assets\Scripts\PrincipalScreen.cs" />
     <Compile Include="Assets\Scripts\PunchSound.cs" />
     <Compile Include="Assets\Scripts\Restart.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
@@ -117,10 +128,16 @@
     <Compile Include="Assets\Scripts\SmartAttack.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\SurvivalButton.cs" />
+    <Compile Include="Assets\Scripts\TextInteractive.cs" />
     <Compile Include="Assets\Scripts\TimeControl.cs" />
     <Compile Include="Assets\Scripts\UnblockBosses.cs" />
+    <Compile Include="Assets\Scripts\UrlMoreGames.cs" />
     <Compile Include="Assets\Scripts\VersusMode.cs" />
     <Compile Include="Assets\Scripts\WizardController.cs" />
+    <Compile Include="Assets\Share\Share.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
