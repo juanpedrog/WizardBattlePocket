@@ -10,6 +10,7 @@ public class Restart : MonoBehaviour {
         healthbarenemy = GameObject.Find("HealthBarInverse");
         controller = GameObject.FindObjectOfType<Controller>();
         controller.player = GameObject.Find(controller.playerName+"(Clone)");
+        controller.numHits = 0;
         if (controller.survivalMode)
         {
             GetComponent<BoxCollider2D>().enabled = false;
@@ -24,6 +25,7 @@ public class Restart : MonoBehaviour {
     void OnMouseDown()
     {
         AdManager.Instance.exitBanner();
+        controller.powerDamage = 0;
         GetComponent<AudioSource>().Play();
         controller.unblockAttack();
         NotificationCenter.DefaultCenter().PostNotification(this,"reset");

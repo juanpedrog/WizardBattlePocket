@@ -20,6 +20,7 @@ public class SurvivalButton : MonoBehaviour {
         GetComponent<AudioSource>().Play();
         anim.SetBool("Pressed",true);
         controller.survivalMode = true;
+        controller.fillWizard();
         Invoke("loadLevel",0.5f);
     }
     void loadLevel()

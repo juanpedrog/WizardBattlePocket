@@ -6,6 +6,7 @@ public class Jump : MonoBehaviour {
     public GameObject wizard;
     public int force;
     Controller controller;
+    public Animator anim;
 	// Use this for initialization
 	void Start () {
         isJump = true;
@@ -19,18 +20,22 @@ public class Jump : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         NotificationCenter.DefaultCenter().AddObserver(this, "isFloor");
-	}
+        if (Input.GetKeyUp("z"))
+        {
+            onMouseDown();
+        }
+    }
     public void Disable()
     {
         isJump = true;
-        GetComponent<Animator>().SetBool("Jump", false);
+        anim.SetBool("Jump", false);
     }
-    void OnMouseDown()
+    public void onMouseDown()
     {
         if (isJump)
         {
             wizard.GetComponent<Rigidbody2D>().velocity=new Vector2(wizard.GetComponent<Rigidbody2D>().velocity.x, force);
-            GetComponent<Animator>().SetBool("Jump",true);
+            anim.SetBool("Jump",true);
             isJump = false;
         }
     }

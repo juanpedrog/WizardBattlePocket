@@ -4,18 +4,25 @@ using System.Collections;
 public class Power : MonoBehaviour {
     public GameObject power;
     public GameObject lighting;
+    Controller controller;
+    public GameObject powerA;
 	// Use this for initialization
 	void Start () {
-	
+        controller = GameObject.FindObjectOfType<Controller>();
+        Invoke("searchPower", 5f);
 	}
-	
+    void searchPower()
+    {
+        powerA = GameObject.FindGameObjectWithTag("SuperPower");//Identify the power object of this element
+    }
 	// Update is called once per frame
 	void Update () {
-        NotificationCenter.DefaultCenter().AddObserver(this, "powern");
+        NotificationCenter.DefaultCenter().AddObserver(this, "powerUp");
 	}
     public void powern(Notification notification)
     {
         GetComponent<AudioSource>().Play();
+        controller.powerDamage = 0;
         switch (GetComponent<Transform>().name)
         {
             case "Wizard1(Clone)": power2(); break;
@@ -29,6 +36,29 @@ public class Power : MonoBehaviour {
             case "Boss2(Clone)": powerBoss2(); break;
             case "Boss3(Clone)": powerBoss3(); break;
         }
+    }
+    public void powerUp(Notification notification)
+    {
+        GetComponent<AudioSource>().Play();
+        controller.powerStill = false;
+        Instantiate(lighting, new Vector3(0, 0, 2.94f), Quaternion.identity);
+        controller.powerDamage = 0;
+        powerA.GetComponent<Animator>().SetBool("activate", true);//Enable the power animation
+        powerA.GetComponent<AudioSource>().Play();
+        Invoke("resetPower",2.5f);
+        Invoke("disableLighting", 2f);
+        NotificationCenter.DefaultCenter().PostNotification(this,"setAllow");
+        Invoke("setAllow", 2f);
+    }
+    void setAllow()
+    {
+        NotificationCenter.DefaultCenter().PostNotification(this, "setAllow");
+    }
+    void resetPower()
+    {
+        powerA.GetComponent<Animator>().SetBool("activate", false);//Reset the power animation
+        powerA.GetComponent<AudioSource>().Stop();
+        controller.powerStill = true;
     }
     public void power1()
     {

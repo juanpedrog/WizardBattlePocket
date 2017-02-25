@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class Attack : MonoBehaviour {
-    private Animator anim,animWizard;
-    public int time;
+    public Animator anim,animWizard;
+    public float time;
     public GameObject wizard;
     private bool isPressed;
     Controller controller;
 	// Use this for initialization
 	void Start () {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         isPressed = true;
         controller = (Controller)GameObject.FindObjectOfType<Controller>();
         Invoke("findWizard", 0.2f);
@@ -22,7 +22,10 @@ public class Attack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (Input.GetKeyUp("m"))
+        {
+            onMouseDown();
+        }
 	}
     void Enabled()
     {
@@ -33,7 +36,7 @@ public class Attack : MonoBehaviour {
     {
         animWizard.SetBool("Attack",false);
     }
-    void OnMouseDown()
+    public void onMouseDown()
     {
         if (isPressed)
         {

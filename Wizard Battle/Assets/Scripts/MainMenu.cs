@@ -42,6 +42,7 @@ public class MainMenu : MonoBehaviour {
         controller.noDamage = true;
         controller.bossTime = false;
         controller.noDamage = true;
+        controller.monsterTime = false;
         Invoke("loadMenu", 0.5f);
     }
     public void mainMenupause()

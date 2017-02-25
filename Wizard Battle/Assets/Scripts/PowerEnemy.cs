@@ -7,34 +7,38 @@ public class PowerEnemy : MonoBehaviour {
     Controller controller;
 	// Use this for initialization
 	void Start () {
-        Invoke("powerAttack",Random.Range(timeIn,timeFin));
+        Invoke("powerActivate",Random.Range(timeIn,timeFin));
         controller=GameObject.FindObjectOfType<Controller>();
+        power = GameObject.FindGameObjectWithTag("SuperPowerEnemy");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-    void powerAttack()
+    void powerActivate()
     {
         if (controller.power)
         {
             GetComponent<AudioSource>().Play();
-            switch (GetComponent<Transform>().parent.name)
-            {
-                case "Wizard1Enemy(Clone)": power1(); break;
-                case "Wizard2Enemy(Clone)": power2(); break;
-                case "Wizard3Enemy(Clone)": power6(); break;
-                case "Wizard4Enemy(Clone)": power5(); break;
-                case "Wizard5Enemy(Clone)": power2(); break;
-                case "Wizard6Enemy(Clone)": power4(); break;
-                case "Wizard7Enemy(Clone)": power7(); break;
-                case "Boss1Enemy(Clone)": powerBoss1(); break;
-                case "Boss2Enemy(Clone)": powerBoss2(); break;
-                case "Boss3Enemy(Clone)": powerBoss3(); break;
-            }
+            power.GetComponent<AudioSource>().Play();
+            Instantiate(lighting, new Vector3(0, 0, 2.94f), Quaternion.identity);
+            power.GetComponent<Animator>().SetBool("activate",true);
         }
-        Invoke("powerAttack", Random.Range(timeIn, timeFin));
+        Invoke("powerActivate", Random.Range(timeIn, timeFin));
+        Invoke("resetPower", 2.5f);
+        Invoke("disableLighting", 2.5f);
+        NotificationCenter.DefaultCenter().PostNotification(this, "setAllow");
+        Invoke("setAllow", 2f);
+    }
+    void setAllow()
+    {
+        NotificationCenter.DefaultCenter().PostNotification(this, "setAllow");
+    }
+    void resetPower()
+    {
+        power.GetComponent<Animator>().SetBool("activate", false);
+        power.GetComponent<AudioSource>().Stop();
     }
     void power1()
     {

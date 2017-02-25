@@ -7,6 +7,7 @@ public class Counter : MonoBehaviour {
 	void Start () {
         controller = GameObject.FindObjectOfType<Controller>();
         controller.isAlive = true;
+        controller.power = false;
         Invoke("destroy", 3.5f);
 	}
 	
@@ -17,6 +18,9 @@ public class Counter : MonoBehaviour {
     private void destroy()
     {
         NotificationCenter.DefaultCenter().PostNotification(this, "temporizer");
+        NotificationCenter.DefaultCenter().PostNotification(this,"activateButtons");
+        NotificationCenter.DefaultCenter().PostNotification(this, "beginAttack");
+        controller.power = true;
         Destroy(this.gameObject);
     }
 }

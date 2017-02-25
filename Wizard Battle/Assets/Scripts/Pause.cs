@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour {
     public GameObject pause;
@@ -27,6 +28,10 @@ public class Pause : MonoBehaviour {
             pause.SetActive(false);
             Time.timeScale = 1;
             controller.pause = true;
+        }
+        if (this.GetComponent<Transform>().tag.Equals("MainMenu"))
+        {
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 }

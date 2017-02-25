@@ -21,8 +21,24 @@ public class Inteligencia : MonoBehaviour {
     {
         if (collider.gameObject.tag == "Attack" && controller.jumpenemy)
         {
-            wizard.GetComponent<Rigidbody2D>().velocity = new Vector2(wizard.GetComponent<Rigidbody2D>().velocity.x,vel);
-            controller.jumpenemy = false;
+            if (GetComponent<Transform>().position.y < 0)
+            {
+                wizard.GetComponent<Rigidbody2D>().velocity = new Vector2(wizard.GetComponent<Rigidbody2D>().velocity.x, vel);
+                controller.jumpenemy = false;
+            }
+            else
+            {
+                if (controller.monsterTime)
+                {
+                    wizard.GetComponent<Rigidbody2D>().velocity = new Vector2(wizard.GetComponent<Rigidbody2D>().velocity.x, vel);
+                    controller.jumpenemy = false;
+                }
+            }
+        }
+        if (GetComponent<Transform>().name.Equals("circlesMonster"))
+        {
+            GameObject foot = GameObject.Find("FootMonster");
+            foot.SetActive(false);
         }
     }
     void inFloor()

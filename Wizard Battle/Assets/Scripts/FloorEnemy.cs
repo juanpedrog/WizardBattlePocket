@@ -17,6 +17,10 @@ public class FloorEnemy : MonoBehaviour {
         if (collider.gameObject.tag.Equals("Floor"))
         {
             controller.jumpenemy = true;
+            if (GetComponent<Transform>().name.Equals("FloorMonster"))
+            {
+                GameObject foot = GameObject.Find("FootMonster");
+            }
         }
     }
 }

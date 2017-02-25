@@ -30,7 +30,14 @@ public class HeadInvoker : MonoBehaviour {
             }
             else
             {
-                Instantiate(controller.headsEnemy[controller.posEnemy], GetComponent<Transform>().position, Quaternion.identity);
+                if (controller.monsterTime)
+                {
+                    Instantiate(controller.headsEnemy[10], GetComponent<Transform>().position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(controller.headsEnemy[controller.posEnemy], GetComponent<Transform>().position, Quaternion.identity);
+                }
             }
             
         }

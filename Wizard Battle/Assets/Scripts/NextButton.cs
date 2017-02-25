@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class NextButton : MonoBehaviour {
     Controller controller;
@@ -45,9 +46,10 @@ public class NextButton : MonoBehaviour {
             controller.score = 0;
             controller.noDamage = true;
             controller.bossTime = false;
+            controller.monsterTime = false;
             controller.noDamage = true;
             controller.ending = false;
-            Application.LoadLevel("MainMenuScene");
+            SceneManager.LoadScene("MainMenuScene");
         }
         else {
             controller.power = true;

@@ -1,8 +1,11 @@
-﻿<Properties>
+﻿<Properties StartupItem="Wizard Battle.CSharp.Plugins.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ArcadeButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ActivateButtons.cs">
     <Files>
+      <File FileName="Assets\Scripts\VersusMode.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ArcadeButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SelectWizard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ActivateButtons.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

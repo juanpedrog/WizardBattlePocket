@@ -6,29 +6,30 @@ using System.IO;
 
 public class Controller : MonoBehaviour {
     public static Controller controller;
+    public int[] logros;//Contiene los logros desbloqueados
     public GameObject[] wizard;
     public GameObject[] heads;
     public GameObject[] headsEnemy;
     public GameObject[] wizardReserve;
     public GameObject[] wizardEnemy;
     public GameObject[] bosses;
-    public GameObject[] backgrounds;
+    public GameObject[] backgrounds,monsters;
     public GameObject GameOver;
     public GameObject GameOverPlayer;
     public GameObject firstDiff,boss1Unblock,boss2Unblock,boss3Unblock;
-    public int posPlayer,posEnemy;
-    public string playerName,enemyName;
+    public int posPlayer, posEnemy, powerDamage = 0, powerUp = 0,numHits=0;
+    public string playerName,enemyName,logroMensaje;
     public GameObject player;
     public bool isAlive = true,noDamage=true;
     public bool bossTime=false;
     public bool pause = true;
-    public bool just1 = true;
+    public bool just1 = true, isPower = false;
     public bool just1player = true;
-    public bool isAliveAgain = false;
+    public bool isAliveAgain = false,monsterTime=false;
     public bool boss1Block,boss2Block,boss3Block,boss1Image,boss2Image,boss3Image;
-    public string datapath;
+    public string datapath, datapathlogro;
     public bool backgroundboss1,sound,music,principal,jumpenemy=true;
-    public bool survivalMode;
+    public bool survivalMode,powerStill;
     public float healthBar;
     public bool power,versus;
     public bool versusMode;
@@ -36,7 +37,9 @@ public class Controller : MonoBehaviour {
     public float score0 = 0;
     public bool floor;
     public BossesBlocks dataObject;
+    public achievement logroObject;
     public bool ending;
+    public string scene;//scene to load, it sends to "Loading" Script to load that scene
     // Use this for initialization
     void Start () {
         ending = false;
@@ -51,6 +54,9 @@ public class Controller : MonoBehaviour {
     void Awake()
     {
         datapath = Application.persistentDataPath + "/data.dat";
+        datapathlogro = Application.persistentDataPath + "/logros.dat";
+        logros = new int[1];
+        Debug.Log(datapath);
         principal = true;
         if (controller == null)
         {
@@ -216,10 +222,22 @@ public class Controller : MonoBehaviour {
             boss2Block = dataObject.boss2;
             boss3Block = dataObject.boss3;
             file.Close();
+            if (File.Exists(datapathlogro))
+            {
+                bf = new BinaryFormatter();
+                file = new FileStream(datapathlogro, FileMode.Open);
+                logroObject = (achievement)bf.Deserialize(file);
+                logros = logroObject.logros;
+            }
+            else
+            {
+                logroObject = new achievement();
+                guardarLogros();
+            }
         }
         else
         {
-            Instantiate(firstDiff, new Vector3(-0.19f, -0.13356f, -4.64f),Quaternion.identity);
+            Instantiate(firstDiff, new Vector3(-0.19f, -0.13356f, -10.9f),Quaternion.identity);
         }
     }
     public void unblockAttack()
@@ -245,7 +263,7 @@ public class Controller : MonoBehaviour {
         {
             case 1: return 5f;
             case 2: return 3f;
-            case 3: return 2.5f;
+            case 3: return 2.1f;
         }
         return -1;
     }
@@ -265,7 +283,7 @@ public class Controller : MonoBehaviour {
         {
             case 1: return 3.5f;
             case 2: return 2.1f;
-            case 3: return 2.1f;
+            case 3: return 1.7f;
         }
         return -1;
     }
@@ -277,6 +295,25 @@ public class Controller : MonoBehaviour {
         bf.Serialize(file, dataObject);
         file.Close();
     }
+    public void guardarLogros()
+    {
+        logroObject.logros = logros;
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = new FileStream(datapathlogro, FileMode.Create);
+        bf.Serialize(file, logroObject);
+        file.Close();
+    }
+    public bool checkLogro(int ind)
+    {
+        for(int i = 0; i < logros.Length; i++)
+        {
+            if (ind == logros[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public int loadDifficulty()
     {
         return dataObject.difficulty;
@@ -286,6 +323,12 @@ public class Controller : MonoBehaviour {
 public class BossesBlocks
 {
     public bool boss1, boss2, boss3;
-    public float scoreMax,scoreSurvival,scoreVersus;
+    public float scoreMax, scoreSurvival, scoreVersus;
     public int difficulty;
 }
+[Serializable]
+public class achievement
+{
+    public int[] logros=new int[1];
+}
+

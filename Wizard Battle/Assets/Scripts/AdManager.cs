@@ -7,8 +7,15 @@ public class AdManager : MonoBehaviour {
     public string banner, intersticial;
 	// Use this for initialization
 	void Start () {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
 #if UNITY_EDITOR
 #elif UNITY_ANDROID

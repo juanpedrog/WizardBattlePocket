@@ -27,7 +27,7 @@ public class MainMenuButtons : MonoBehaviour {
     }
     void loadScore()
     {
-        Application.LoadLevel("ScoreScene");
+        Application.LoadLevel("AchievementBoardScene");
     }
     void loadOption()
     {

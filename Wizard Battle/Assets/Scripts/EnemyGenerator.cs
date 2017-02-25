@@ -38,9 +38,16 @@ public class EnemyGenerator : MonoBehaviour {
 	}
     public void findEnemy()
     {
-        if (controller.bossTime) {
-            controller.posEnemy = Random.Range(0, controller.bosses.Length);
-            Instantiate(controller.bosses[controller.posEnemy], GetComponent<Transform>().position, Quaternion.identity);
+        if (controller.bossTime  || controller.monsterTime) {
+            if (controller.bossTime)
+            {
+                controller.posEnemy = Random.Range(0, controller.bosses.Length);
+                Instantiate(controller.bosses[controller.posEnemy], GetComponent<Transform>().position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(controller.monsters[0], GetComponent<Transform>().position, Quaternion.identity);
+            }
         }
         else {
             int pos = Random.Range(0, controller.wizardEnemy.Length);
