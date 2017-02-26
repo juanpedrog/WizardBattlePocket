@@ -27,7 +27,11 @@ public class IndiceLogro : MonoBehaviour {
     {
         controller.logroMensaje = texto[index-1];
         GameObject n = GameObject.Find("LogroMensage(Clone)");
-        if(n==null)Instantiate(mensaje,new Vector3(0,0,-3.22f),Quaternion.identity);
+        if (n == null)
+        {
+            Instantiate(mensaje, new Vector3(0, 0, -3.22f), Quaternion.identity);
+            Time.timeScale = 0;
+        }
     }
 	// Update is called once per frame
 	void Update () {

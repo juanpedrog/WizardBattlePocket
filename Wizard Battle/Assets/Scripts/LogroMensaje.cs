@@ -16,5 +16,6 @@ public class LogroMensaje : MonoBehaviour {
     void OnMouseDown()
     {
         Destroy(this.GetComponent<Transform>().parent.gameObject,0.5f);
+        Time.timeScale = 1;
     }
 }
